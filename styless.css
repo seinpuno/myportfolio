@@ -12,7 +12,6 @@ body {
     background-color: var(--pure-white);
     color: var(--ink-black);
     overflow-x: hidden;
-    background-image: url('images/background.jpg'); /* Your background image path */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Keeps the image still while you scroll */
@@ -52,7 +51,7 @@ body {
 /* Hero Section */
 .hero-section {
     position: relative;
-    background-image: url('images/background.jpg'); /* Verbatim background */
+    background-image: url('images/backgroundv2.jpg'); /* Verbatim background */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -162,22 +161,26 @@ body {
 
 /* --- Slider Section Container --- */
 .slider-section {
-    padding: 80px 0;
-    background: transparent; /* Remove #111 or #fff */
-    overflow: hidden;
-    position: relative;
-    /* Optional: adds a slight dark tint so the slider stays readable */
-    background: rgba(233, 8, 8, 0.4); 
-    backdrop-filter: blur(5px); /* Optional: adds a glass effect */
+    background: #ffffff; /* Plain white background as requested */
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Ensure the iframe scales nicely */
+iframe[name="mainframe"] {
+    transition: height 0.3s ease;
 }
 
 /* Container for the title and the link */
 .slider-title {
     display: flex;
-    justify-content: space-between; /* Pushes content to opposite ends */
-    align-items: center;           /* Vertically centers the text */
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 40px;
-    padding: 0 50px;               /* Matches your section padding so it aligns with the grid */
+    padding: 0 50px;
 }
 
 .slider-title span {
@@ -185,7 +188,8 @@ body {
     font-weight: 900;
     font-size: 12px;
     letter-spacing: 5px;
-    color: #ffffff;
+    /* Changed to dark color to be visible on white BG */
+    color: #1a1a1a; 
     text-transform: uppercase;
 }
 
@@ -194,60 +198,16 @@ body {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 11px;
-    color: #ffffff; /* Using your accent color */
+    /* Using your accent color for contrast on white */
+    color: #E21D26; 
     text-decoration: none;
     letter-spacing: 2px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .slider-title .view-all:hover {
-    color: #ffffff;
-    transform: translateX(5px); /* Slight nudge effect on hover */
-}
-/* Individual Slide Styling */
-.slide {
-    flex-shrink: 0;
-    width: 300px;
-    height: 180px;
-    background-color: #000; /* Fallback color */
-    border-radius: 15px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border: 1px solid #333;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
-}
-
-/* Updated Image Style to show your Home background clearly */
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures your image fills the card without stretching */
-    opacity: 0.85;      /* High visibility for your home background image */
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    filter: brightness(0.8); /* Slightly darker so text pops, becomes bright on hover */
-}
-
-/* Hover state to see the full background image clearly */
-.slide:hover img {
-    opacity: 1;
-    filter: brightness(1);
-    transform: scale(1.1);
-}
-
-/* Ensure the text is still readable over your image */
-.slide span {
-    position: absolute;
-    z-index: 2;
-    color: #fff;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 16px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 1); /* Heavy shadow to read text over your photo */
+    color: #1a1a1a;
+    transform: translateX(5px);
 }
 /* --- The Marquee Logic --- */
 .marquee {
@@ -271,88 +231,127 @@ body {
 }
 
 /* --- Individual Slide Styling --- */
+/* --- Individual Slide Styling --- */
 .slide {
     flex-shrink: 0;
-    width: 300px;
-    height: 180px;
-    background: #1a1a1a;
-    border-radius: 15px;
+    width: 400px; 
+    height: 240px;
+    background: #ffffff; 
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    border: 1px solid #333;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+    border: 1px solid #eeeeee; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    z-index: 2;
 }
 
-/* Image styling within the slide */
+/* Restored Image Visibility (Removing the 0.3 opacity) */
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 0.8; /* Restored to high visibility */
+    filter: brightness(0.9); /* Slight dimming so the white text still pops */
+    transition: all 0.4s ease;
 }
 
-/* Text overlay within the slide */
+/* Text overlay - Reverted to white for contrast against the image */
 .slide span {
     position: absolute;
-    z-index: 2;
-    color: #fff;
+    z-index: 3;
+    color: #ffffff; 
     font-family: 'Archivo Black', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
-    transition: letter-spacing 0.3s ease, font-size 0.3s ease;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Shadow helps text stay visible over photos */
+    transition: all 0.3s ease;
 }
 
-/* --- Hover/Interaction States --- */
+/* --- Hover States --- */
 .slide:hover {
-    transform: scale(1.08);
-    border-color: #E21D26; /* Accents the active slide */
-    z-index: 5;
+    transform: scale(1.05);
+    border-color: #E21D26; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .slide:hover img {
-    opacity: 0.9;
+    opacity: 1; /* Full color on hover */
+    filter: brightness(1.1); /* Makes the thumbnail "glow" on hover */
     transform: scale(1.1);
 }
 
 .slide:hover span {
     letter-spacing: 4px;
-    font-size: 18px;
+    transform: translateY(-5px);
 }
-
 /* Click feedback */
 .slide:active {
     transform: scale(0.95);
 }
+/* --- Slider Footer & Button --- */
+.slider-footer {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 40px;        /* Spacing below the slides */
+    padding-bottom: 20px;
+}
 
+.view-all-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #E21D26; /* Dark button body */
+    color: #ffffff;            /* White text */
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 50px;       /* Rounded pill shape */
+    transition: all 0.3s ease;
+    border: 2px solid #1a1a1a;
+}
+
+.view-all-btn:hover {
+    background-color: transparent;
+    color: #E21D26;            /* Signature red text on hover */
+    border-color: #E21D26;      /* Red border on hover */
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 10px 20px rgba(226, 29, 38, 0.2);
+}
+
+/* Update the slider title to remove the flex space-between */
+.slider-title {
+    text-align: left;
+    margin-bottom: 40px;
+    padding: 0 50px;
+}
+/* --- Animation Keyframes --- */
 /* --- Animation Keyframes --- */
 @keyframes scrollAnimation {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* This value must match the total width of one set of slides (including gaps) */
-        /* Formula: -(Width_of_Slide + Gap) * Number_of_Original_Slides */
-        transform: translateX(calc(-330px * 5)); 
+        /* New Formula: -(400px width + 30px gap) * 5 slides */
+        transform: translateX(calc(-430px * 5)); 
     }
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .slide {
-        width: 220px;
-        height: 130px;
+        width: 280px;
+        height: 160px;
     }
     
     @keyframes scrollAnimation {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 5)); }
+        100% { transform: translateX(calc(-310px * 5)); }
     }
 }
 
@@ -526,23 +525,63 @@ body {
 }
 
 /* Form Styling for Light Background */
+/* --- Contact Form Styling --- */
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
 .contact-form .form-group input, 
 .contact-form .form-group textarea {
     width: 100%;
     padding: 15px 20px;
-    background: #f4f4f4; /* Light gray input fields */
-    border: 1px solid #e0e0e0;
+    background: #ffffff; /* Clean white background */
+    border: 2px solid #eeeeee; /* Subtle border */
     color: #1a1a1a;
     font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    text-transform: uppercase; /* Matches your header style */
 }
 
+/* Hover & Focus state matching your brand red */
 .contact-form .form-group input:focus, 
 .contact-form .form-group textarea:focus {
     background: #fff;
-    border-color: #1a1a1a;
+    border-color: #e21d26; /* Signature Red */
     outline: none;
+    box-shadow: 0 5px 15px rgba(226, 29, 38, 0.1);
+}
+
+/* --- Submit Button (Pill Shape) --- */
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #1a1a1a; /* Dark button body like "VIEW ALL" */
+    color: #ffffff;
+    border: 2px solid #1a1a1a;
+    border-radius: 50px; /* Pill shape matching the slider footer */
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: transparent;
+    color: #e21d26; /* Turns red on hover */
+    border-color: #e21d26;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(226, 29, 38, 0.2);
 }
 
 /* Map Wrapper for Light Theme */
@@ -575,7 +614,7 @@ body {
 }
 
 .social-link:hover {
-    color: #ff4d4d; /* Turns red on hover */
+    color: #E21D26; /* Turns red on hover */
     transform: translateY(-5px); /* Subtle lift effect */
 }
 

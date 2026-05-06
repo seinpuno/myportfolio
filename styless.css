@@ -49,6 +49,7 @@ body {
 .content-wrapper { margin-left: var(--sidebar-width); }
 
 /* Hero Section */
+/* Hero Section */
 .hero-section {
     position: relative;
     background-image: url('images/backgroundv2.jpg');
@@ -66,10 +67,49 @@ body {
 }
 
 .hero-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
     background: linear-gradient(to right, rgba(226, 29, 38, 0.9), rgba(26, 26, 26, 0.6));
     z-index: 1;
 }
+
+/* Ensure content sits above overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%; /* Prevents text from pushing past screen edges */
+}
+
+/* --- Mobile Fixes --- */
+@media (max-width: 768px) {
+    .hero-section {
+        /* Mobile browsers struggle with fixed backgrounds; scroll is safer */
+        background-attachment: scroll;
+        padding: 0 5%; /* Give a bit more room on the sides */
+        text-align: center; /* Optional: centers text for a better mobile look */
+        justify-content: center;
+    }
+
+    .hero-overlay {
+        /* Adjust gradient for mobile: Top-to-Bottom often looks better than Left-to-Right */
+        background: linear-gradient(to bottom, rgba(226, 29, 38, 0.85), rgba(26, 26, 26, 0.8));
+    }
+
+    /* Scaling down large headers so they don't break the layout */
+    .hero-section h1 {
+        font-size: 2.5rem; /* Adjust based on your current font size */
+        line-height: 1.1;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+}
+
 
 .hero-container { position: relative; display: flex; align-items: center; gap: 80px; z-index: 2; }
 .hero-image img {

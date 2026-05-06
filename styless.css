@@ -52,36 +52,33 @@ body {
 /* Hero Section */
 .hero-section {
     position: relative;
+    /* Use svh to account for mobile browser address bars */
+    min-height: 100svh; 
+    width: 100%;
     background-image: url('images/backgroundv2.jpg');
     background-size: cover;
     background-position: center;
-    /* Fixed attachment often breaks on mobile; we disable it for smaller screens below */
-    background-attachment: fixed; 
-    min-height: 100vh;
-    width: 100%;
-    display: flex; 
-    align-items: center; 
-    padding: 0 8%;
-    color: white;
-    overflow: hidden; /* Prevents unwanted horizontal scrolling */
+    /* CRITICAL: Disable fixed on mobile to prevent the "shifting" gap */
+    background-attachment: scroll; 
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
+/* Ensure the overlay covers the ENTIRE section height */
 .hero-overlay {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(226, 29, 38, 0.9), rgba(26, 26, 26, 0.6));
     z-index: 1;
+    background: linear-gradient(to right, rgba(226, 29, 38, 0.9), rgba(26, 26, 26, 0.6));
 }
 
-/* Ensure content sits above overlay */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 100%; /* Prevents text from pushing past screen edges */
-}
+
 
 /* --- Mobile Fixes --- */
 @media (max-width: 768px) {
